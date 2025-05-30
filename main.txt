@@ -1,0 +1,60 @@
+
+Task 4: Setup and Use a Firewall on Windows/Linux
+
+Objective: Configure and test basic firewall rules to allow or block traffic.
+
+Option 1: UFW on Linux (Ubuntu/Debian)
+
+1. Enable UFW and Check Status:
+    sudo ufw enable
+    sudo ufw status verbose
+
+2. Block Inbound Traffic on Port 23 (Telnet):
+    sudo ufw deny 23
+
+3. Test the Rule:
+    telnet <your-ip> 23  # Should be blocked
+
+4. Allow SSH (Port 22):
+    sudo ufw allow 22
+
+5. Remove the Telnet Block Rule:
+    sudo ufw delete deny 23
+
+6. View All Rules:
+    sudo ufw status numbered
+
+Summary - How Firewalls Filter Traffic (Linux):
+- UFW configures iptables rules to control traffic.
+- Filters by port, protocol, IP, and direction (in/out).
+- Default is deny incoming, allow outgoing.
+- Rules are applied top-down.
+
+---
+
+Option 2: Windows Firewall
+
+1. Open Windows Firewall:
+   - Control Panel > System and Security > Windows Defender Firewall > Advanced Settings
+
+2. View Current Rules:
+   - Inbound Rules and Outbound Rules sections
+
+3. Block Port 23 (Telnet):
+   - New Rule > Port > TCP 23 > Block the connection > Apply to all profiles > Name it 'Block Telnet'
+
+4. Allow SSH (if installed, port 22):
+   - New Rule > Port > TCP 22 > Allow the connection
+
+5. Remove Rule:
+   - Locate 'Block Telnet' in Inbound Rules and delete it
+
+Summary - How Firewalls Filter Traffic (Windows):
+- Windows Firewall applies rules based on port, app, IP, and direction.
+- Profiles include Domain, Private, and Public.
+- Stateful inspection allows dynamic traffic control.
+
+Deliverables:
+- Screenshot of firewall rules (UFW or Windows)
+- List of steps or commands used (above)
+- Brief summary of how firewall filters traffic
